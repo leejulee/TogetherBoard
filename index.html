@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TypeScript with VSCode</title>  
+  <link rel="stylesheet" href="./src/css/index.css">
+  <link href="./node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+<style>
+    body {
+        background-color: white;
+    }
+</style>
+  <!-- js -->
+  <script src="./node_modules/pouchdb/dist/pouchdb.js"></script>
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./src/index.js"></script>
+  <div>
+    <span style="font-size:2em;padding:0.5em 0.3em; vertical-align:middle;display:inline-block;">TogetherBoardLocalDB (Beta)</span></div>
+
+<div class="tb-container" id="tb-tools" data-target-id="" style="display:none">
+    <div class="tb-container-items">
+        <span class="tb-container-item2 tb-dropdown-items tb-container-editoritem">
+            <a title="text color" class="tb-container-item2" href="javascript:void(0)">
+                <i class="tb-text-color"></i>
+            </a>
+            <span class="dropdown-content" style="z-index:99">
+                <a data-action="color-1" href="javascript:void(0)"><span style="color:rgb(255, 0, 0)">A</span></a>
+                <a data-action="color-2" href="javascript:void(0)"><span style="color:rgb(255, 106, 0)">A</span></a>
+                <a data-action="color-3" href="javascript:void(0)"><span style="color:rgb(0, 148, 255)">A</span></a>
+                <a data-action="color-4" href="javascript:void(0)"><span style="color:rgb(0, 0, 0)">A</span></a>
+            </span>
+        </span>
+        <span class="tb-container-item2 tb-dropdown-items tb-container-editoritem">
+            <a title="text font" class="tb-container-item2" href="javascript:void(0)">
+                <i class="tb-text-lowercase"></i>
+            </a>
+            <span class="dropdown-content2" style="z-index:99;">
+                <a data-action="font-2" href="javascript:void(0)"><font size="2">A</font></a>
+                <a data-action="font-3" href="javascript:void(0)"><font size="3">A</font></a>
+                <a data-action="font-4" href="javascript:void(0)"><font size="4">A</font></a>
+                <a data-action="font-5" href="javascript:void(0)"><font size="5">A</font></a>
+                <a data-action="font-6" href="javascript:void(0)"><font size="6">A</font></a>
+                <a data-action="font-7" href="javascript:void(0)"><font size="7">A</font></a>
+            </span>
+        </span>
+        <a title="text bold" class="tb-container-item tb-container-editoritem" data-action="bold" href="javascript:void(0)">
+            <i class="fa fa-bold fa-2x"></i>
+        </a>
+        <span class="tb-item-separator"></span>
+        <a title="trash" class="tb-container-item" data-action="trash" href="javascript:void(0)">
+            <i class="fa fa-trash fa-2x"></i>
+        </a>
+    </div>
+</div>
+
+<div class="mainWhiteBoard togetherboard" onmouseup="tb.endMove(event)"></div>
+</body>
+<script>
+    $(function () {
+        var r = new RegExp('.+\/TogetherBoardLocalDB', 'i');
+        var m = r.exec(location.href);
+
+        var url = (m) ? m[0] : "";
+
+        var id = '@ViewBag.RoomId';
+
+        tb.init(id);
+
+        var lastUserId = '@ViewBag.UserName' || '@B2bAuthHelper.CurrentUserFullName' || '@B2bAuthHelper.CurrentUserName';
+
+        if (id) {
+            tb.RoomInitPonchdb(id, lastUserId);
+        }
+
+    })
+
+    function copyurl() {
+        document.querySelector('#nowUrl').select();
+        document.execCommand('copy');
+    }
+</script>
+</html>
