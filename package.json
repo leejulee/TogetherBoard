@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "tsc -w & live-server"
+    "test": "tsc -w & live-server --port=3010"
   },
   "author": "",
   "license": "ISC",
