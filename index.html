@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./src/css/index.css">
   <link href="./node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <script id="serviceconfig" src="./src/serviceconfig.js"></script>
 </head>
 
 <body>
@@ -64,16 +65,19 @@
 </body>
 <script>
     $(function () {
-        var r = new RegExp('.+\/TogetherBoardLocalDB', 'i');
-        var m = r.exec(location.href);
+        //var r = new RegExp('.+\/TogetherBoardLocalDB', 'i');
+        //var r = new RegExp('http:\\/\\/(local|127.0.0.1):[\\d]+\\/((\\w+-?){1,})', 'i');
+        var r = new RegExp('((\\w+-?){1,})', 'i');
+        var m = r.exec(location.search);
+        var pId = (m) && m.length > 2 ? m[1] : "";
 
-        var url = (m) ? m[0] : "";
-
-        var id = '@ViewBag.RoomId';
+        var id = pId || tb.guidLocal();
+        
+        var name = window.prompt('What\'s your name ?','leo');
 
         tb.init(id);
 
-        var lastUserId = '@ViewBag.UserName' || '@B2bAuthHelper.CurrentUserFullName' || '@B2bAuthHelper.CurrentUserName';
+        var lastUserId = name || 'Leo';
 
         if (id) {
             tb.RoomInitPonchdb(id, lastUserId);

@@ -1,5 +1,8 @@
 /// <reference path="../node_modules/@types/jquery/index.d.ts" />
+
 declare var PouchDB: any;
+
+declare var config: any;
 
 let DebugMode = false;
 
@@ -74,8 +77,9 @@ enum actionsLocal {
     img = 5,
     resize = 6
 }
-let dbHost = 'https://10.16.133.104:5985/' || 'http://10.16.133.104:5984/';
-let dbName = 'together_board_db' || 'localdb_test';
+let configinfo = (config) ? config : null;
+let dbHost = configinfo.dbHost || 'http://10.16.133.104:5984/';
+let dbName = configinfo.dbName || 'togetherboard_demo_db';
 
 let localdb;
 let remotedb;
