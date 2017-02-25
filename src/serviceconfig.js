@@ -1,4 +1,4 @@
 config={
-    "dbHost":"http://10.16.133.104:5984/",
+    "dbHost":"http://127.0.0.1:5984/",
     "dbName":"togetherboard_demo_db"
 }
